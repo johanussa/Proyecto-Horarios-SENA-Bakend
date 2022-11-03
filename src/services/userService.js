@@ -5,28 +5,28 @@ const UserModel = require('../models/modelUser.js');
 
 class UserService {
 
-  // constructor() {
-  //   this.users;
-  // }
-
   async find() {
     let usersDB = await UserModel.find();
-    if (usersDB) { return usersDB; }
-    // else { throw boom.notFound('Users Not Found DB'); }
-    else { boom.notFound('Users Not Found DB'); }
-  }
+    if (usersDB.length == 0) { throw boom.notFound('Users Not Found DB'); }
+    return usersDB;
+  } 
   async findOne(id) {
-    const user = await UserModel.findById(id);
-    if (user.length == 0) { throw boom.notFound(`ID ${id} Not Found`); }
-    else { return user; }
+    try {
+      const user = await UserModel.findById(id);
+      return user;
+    } catch(e) {
+      throw boom.notFound(e + ' ID No Registrado - Argument passed in must be' +
+      ' a string of 12 bytes or a string of 24 hex characters or an integer');
+    }
   }
   async createUser(data) {
     const query = { Identificacion: data.Identificacion };
     const userDB = await UserModel.find(query);
-    if (userDB.length == 0) {
+    if (!userDB.length) {
       const newUser = await UserModel.create(data);
       return newUser;
-    } else { throw boom.conflict(`El usuario con ID ${data.Identificacion} Ya se encuentra registrado`); }
+    }
+    throw boom.conflict(`El usuario con ID ${data.Identificacion} Ya se encuentra registrado`);
   }
 }
 

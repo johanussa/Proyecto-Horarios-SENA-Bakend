@@ -4,27 +4,21 @@ const UserService = require('../services/UserService');
 
 const service = new UserService();
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await service.find();
     res.status(200).json(users);
   } catch (error) {
-    res.status(404).json({
-      message: 'Users Not Found',
-      error: error
-    });
+    next(error);
   }
 });
-router.get('/:id', async (req, res) => {
-  const { id } = req.params;
+router.get('/:id', async (req, res, next) => {
   try {
+    const { id } = req.params;
     const user = await service.findOne(id);
     res.status(200).json(user);
   } catch (error) {
-    res.status(404).json({
-      message: `User ID ${id} Not Found`,
-      error: error
-    });
+    next(error);
   }
 });
 router.post('/', async (req, res, next) => {
