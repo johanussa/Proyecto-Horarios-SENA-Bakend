@@ -1,0 +1,41 @@
+{
+  "name": "proyecto-backend-sena",
+  "version": "1.0.0",
+  "description": "Configuracion de horarios",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johanussa/Proyecto-Horarios-SENA-Bakend.git"
+  },
+  "keywords": [
+    "Javascrip",
+    "express",
+    "mongodb"
+  ],
+  "author": "Johan Ussa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johanussa/Proyecto-Horarios-SENA-Bakend/issues"
+  },
+  "homepage": "https://github.com/johanussa/Proyecto-Horarios-SENA-Bakend#readme",
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.0"
+  }
+}
